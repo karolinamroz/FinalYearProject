@@ -28,6 +28,7 @@ class Race(models.Model):
     image = models.ImageField(upload_to='uploads/',blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True) 
+    location = models.TextField(blank=True, null=True)
 
     class Meta:
         ordering = ('-date_added',)

@@ -8,7 +8,7 @@ class Register(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    zipcode = models.CharField(max_length=100)
+    sortcode = models.CharField(max_length=100)
     place = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)

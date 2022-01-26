@@ -1,5 +1,5 @@
-
 import stripe
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import Http404
@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import Register, RegisteredRace
-from .serializers import RegisterSerializer, MyRaceSerializer
+from .serializers import RegisterSerializer
 
 @api_view(['POST'])
 @authentication_classes([authentication.TokenAuthentication])
@@ -26,8 +26,8 @@ def checkout(request):
         try:
             charge = stripe.Charge.create(
                 amount=int(paid_amount * 100),
-                currency='USD',
-                description='Charged',
+                currency='GDP',
+                description='Charge from Djackets',
                 source=serializer.validated_data['stripe_token']
             )
 
@@ -39,12 +39,3 @@ def checkout(request):
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-class RacesList(APIView):
-    authentication_classes = [authentication.TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request, format=None):
-        races = Register.objects.filter(user=request.user)
-        serializer = MyRaceSerializer(races, many=True)
-        return Response(serializer.data)  

@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STRIPE_SECRET_KEY = 'sk_test_51KHr35I0sOpV4xniCL9H7mUl8Y9tOvDeXzaYhz3y5QbXpjyZFj93hcXjICBYarqxdLCUXQeNLzTl9jCumcrIUord00NBUXMNRl'
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,9 +29,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+STRIPE_SECRET_KEY = 'sk_test_51KHr35I0sOpV4xniCL9H7mUl8Y9tOvDeXzaYhz3y5QbXpjyZFj93hcXjICBYarqxdLCUXQeNLzTl9jCumcrIUord00NBUXMNRl'
 
 # Application definition
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
